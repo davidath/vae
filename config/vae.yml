@@ -1,0 +1,9 @@
+autoencoder:
+    type: VAE
+    layers:
+        - Input: 
+          properties:
+              - {Width: 784, Channels: 1}
+        - Hidden: 
+          properties:
+              - {Width: 10, Activation: ReLU}
