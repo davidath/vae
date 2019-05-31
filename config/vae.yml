@@ -1,9 +1,23 @@
-autoencoder:
-    type: VAE
+NNConf:
+    type: Autoencoder
     layers:
         - Input: 
           properties:
               - {Width: 784, Channels: 1}
-        - Hidden: 
+        - Encoder: 
           properties:
-              - {Width: 10, Activation: ReLU}
+              - {Width: 256, Activation: ReLU}
+              - {Width: 128, Activation: ReLU}
+              - {Width: 64, Activation: ReLU}
+        - MultiNormalParams: 
+          properties:
+              - {Width: 16, Activation: ReLU}
+              - {Width: 16, Activation: ReLU}
+        - Decoder: 
+          properties:
+              - {Width: 64, Activation: ReLU}
+              - {Width: 128, Activation: ReLU}
+              - {Width: 256, Activation: ReLU}
+        - Output: 
+          properties:
+              - {Width: 784, Channels: 1}
