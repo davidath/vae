@@ -1,23 +1,24 @@
 NNConf:
-    type: Autoencoder
     layers:
-        - Input: 
+        - name: Input
           properties:
               - {Width: 784, Channels: 1}
-        - Encoder: 
+        - name: Encoder
           properties:
-              - {Width: 256, Activation: ReLU}
-              - {Width: 128, Activation: ReLU}
-              - {Width: 64, Activation: ReLU}
-        - MultiNormalParams: 
+              - {Width: 256, Activation: relu}
+              - {Width: 128, Activation: relu}
+              - {Width: 64, Activation: relu}
+        - name: MultiNormalParams
           properties:
-              - {Width: 16, Activation: ReLU}
-              - {Width: 16, Activation: ReLU}
-        - Decoder: 
+              - {Width: 16, Activation: relu}
+              - {Width: 16, Activation: relu}
+        - name: Decoder
           properties:
-              - {Width: 64, Activation: ReLU}
-              - {Width: 128, Activation: ReLU}
-              - {Width: 256, Activation: ReLU}
-        - Output: 
+              - {Width: 64, Activation: relu}
+              - {Width: 128, Activation: relu}
+              - {Width: 256, Activation: relu}
+        - name: Output
           properties:
               - {Width: 784, Channels: 1}
+seed: 6
+

@@ -4,6 +4,10 @@ import tensorflow as tf
 import os
 import sys
 import yaml
+import utils
+
+sys.path.append('autoencoders')
+from VAE import *
 
 ##############################################################################
 # Training script for all VAE variations and datasets
@@ -20,4 +24,13 @@ config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 sess = tf.Session(config=config)
 tf.keras.backend.set_session(sess)
+
+# Load configuration from yaml
+config = utils.load_config(sys.argv[1])
+
+# Assert "deterministic" behaviour for the experiments
+tf.set_random_seed(config['seed'])
+
+vae = VAE(config)
+
 

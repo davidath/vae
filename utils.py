@@ -28,3 +28,11 @@ def load_config(path):
     except FileNotFoundError:
         log('File '+ path + ' not found!', 'Exception')
 
+
+# Get layer from array of nn configuration array with name reference
+# Args: conf, layer name
+# Returns: layer properties from yaml
+
+def layer_by_name(conf, lname):
+    _conf = conf['NNConf']
+    return next(i for i in _conf['layers'] if i['name'] == 'Input')
