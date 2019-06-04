@@ -33,4 +33,6 @@ tf.set_random_seed(config['seed'])
 
 vae = VAE(config)
 
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
+vae._ae.fit(x_train.reshape(60000, 784), epochs=100, batch_size=256)

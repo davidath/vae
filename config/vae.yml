@@ -19,6 +19,15 @@ NNConf:
               - {Width: 256, Activation: relu}
         - name: Output
           properties:
-              - {Width: 784, Channels: 1}
+              - {Width: 784, Channels: 1, Activation: linear}
+    hyperparameters:
+        lr: 0.1
+        lr_decay_epoch: 500
+        max_epochs: 500
+        batch_size: 256
 seed: 6
-
+prefix: VAE
+enumber: test
+data_input_path:
+validation_size: 0
+model_output_path: experiments/
