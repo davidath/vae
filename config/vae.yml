@@ -2,7 +2,7 @@ NNConf:
     layers:
         - name: Input
           properties:
-              - {Width: 784, Channels: 1}
+              - {Width: 4096, Channels: 1}
         - name: Encoder
           properties:
               - {Width: 256, Activation: relu}
@@ -19,7 +19,7 @@ NNConf:
               - {Width: 256, Activation: relu}
         - name: Output
           properties:
-              - {Width: 784, Channels: 1, Activation: linear}
+              - {Width: 4096, Channels: 1, Activation: linear}
     hyperparameters:
         lr: 0.1
         lr_decay_epoch: 500
@@ -28,6 +28,6 @@ NNConf:
 seed: 6
 prefix: VAE
 enumber: test
-data_input_path:
+data_input_path: datasets/dsprites.npz
 validation_size: 0
 model_output_path: experiments/

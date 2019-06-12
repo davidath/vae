@@ -57,7 +57,10 @@ class VAE:
             self._gen_in = K.layers.Input(shape=(_mn_layer['properties'][0]['Width'], ),
                                 name='gen_in')
             self._gen_out, self._gen = self.decoder(conf, self._gen_in, W_INIT)
-            self.loss_func()
+            # Optimizer
+            opt = tf.keras.optimizers.SGD(lr=conf['NNConf']['hyperparameters']['lr'],
+                                           momentum=0.9)
+            self.loss_func(opt, conf['NNConf']['hyperparameters']['lr'])
         except KeyError:
             raise KeyError
 
@@ -157,8 +160,8 @@ class VAE:
     # Build loss
     # Args: 
 
-    def loss_func(self):
-        # mse
+    def loss_func(self, optimizer, lr):
+        # MSE
         recon_loss = K.losses.mean_squared_error(self._in, self._out)
         
         # Get mu and sigma layers
@@ -173,7 +176,5 @@ class VAE:
 
         # Optimizing
         self._ae.add_loss(vae_loss)
-        self._ae.compile(optimizer='adam')
-
-
+        self._ae.compile(optimizer=optimizer)
 
